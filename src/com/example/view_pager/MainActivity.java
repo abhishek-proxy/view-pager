@@ -1,6 +1,7 @@
 package com.example.view_pager;
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -36,6 +37,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			actionbar.addTab(actionbar.newTab().setText(tabs_name).setTabListener(this));
 		}
 		
+		viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			 
+		    @Override
+		    public void onPageSelected(int position) {
+		        // on changing the page
+		        // make respected tab selected
+		        actionbar.setSelectedNavigationItem(position);
+		    }
+		 
+		    @Override
+		    public void onPageScrolled(int arg0, float arg1, int arg2) {
+		    }
+		 
+		    @Override
+		    public void onPageScrollStateChanged(int arg0) {
+		    }
+		});
+		
 	
 	}
 
@@ -47,22 +66,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	@Override
-	public void onTabReselected(android.app.ActionBar.Tab arg0,
-			FragmentTransaction arg1) {
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onTabSelected(android.app.ActionBar.Tab arg0,
-			FragmentTransaction arg1) {
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
+		viewpager.setCurrentItem(tab.getPosition());
 		
 	}
 
 	@Override
-	public void onTabUnselected(android.app.ActionBar.Tab arg0,
-			FragmentTransaction arg1) {
+	public void onTabUnselected(Tab tab,FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
 	}
